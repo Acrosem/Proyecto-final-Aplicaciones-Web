@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilo para la lupa */
+        .zoom-in {
+            cursor: zoom-in;
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+        }
+
+        .imagen-zoom {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .imagen-zoom:hover {
+            border-color: #0056b3;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .descripcion {
+            display: none;
+            position: absolute;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .descripcion p {
+            margin-bottom: 0;
+        }
+
+        .articulo {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            color: #007BFF;
+            text-align: center;
+        }
+
+        .navbar-brand img {
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            max-height: 50px;
+        }
+
+        /* Estilos para la barra de navegación */
+        nav {
+            background-color: #007BFF;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        nav h2 {
+            color: #fff;
+        }
+    </style>
+    <title>Lista de Artículos</title>
+</head>
+
+<body class="container mt-5">
+
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <a class="navbar-brand" href="index.html">
+            <img src="Screenshot_2.png" alt="Logo">
+        </a>
+        <h2 class="my-4">Lista de Artículos</h2>
+    </nav>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="articulo">
+                <img src="Logitech G332 Audífonos.jpg" alt="Artículo 1" class="imagen-zoom" onclick="toggleDescripcion('desc1')">
+                <div id="desc1" class="descripcion" onclick="toggleDescripcion('desc1')">
+                    <p>Logitech G332 Audífonos Gaming con Cable, Transductores 50 mm, Almohadillas Giratorias Cuero Sintético, 3,5 mm Jack, Mic Volteable para Silenciar, Ultra-Ligero, PC/Xbox One/PS4/Switch - Negro/Rojo</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="articulo">
+                <img src="Razer Kraken Ultimate.jpg" alt="Artículo 1" class="imagen-zoom" onclick="toggleDescripcion('desc2')">
+                <div id="desc2" class="descripcion" onclick="toggleDescripcion('desc2')">
+                    <p>Razer Kraken Ultimate - Audifono con Iluminacion chroma RGB USB con Sonido Surround y Micrófono ANC StandardWindows Vista; Windows XP; Mac; Linux</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="articulo">
+                <img src="ASTRO Gaming A50 - Headsets Gamer.jpg" alt="Artículo 3" class="imagen-zoom" id="art3" onclick="toggleDescripcion('desc3')">
+                <div id="desc3" class="descripcion" onclick="toggleDescripcion('desc3')">
+                    <p>ASTRO Gaming A50 Wireless Headset + Base Station Gen 4 - Compatible with Xbox Series X|S, Xbox One, PC, Mac - Black/Gold</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agrega más artículos según sea necesario -->
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const imagenes = document.querySelectorAll('.imagen-zoom');
+        const descripciones = document.querySelectorAll('.descripcion');
+
+        imagenes.forEach((imagen, index) => {
+            imagen.addEventListener('mouseover', () => {
+                imagen.classList.add('zoom-in');
+            });
+
+            imagen.addEventListener('mouseout', () => {
+                imagen.classList.remove('zoom-in');
+            });
+
+            imagen.addEventListener('click', () => {
+                descripciones.forEach((descripcion, i) => {
+                    if (index !== i) {
+                        descripcion.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        function toggleDescripcion(id) {
+            const descripcion = document.getElementById(id);
+            descripciones.forEach((d) => {
+                if (d.id !== id) {
+                    d.style.display = 'none';
+                }
+            });
+            descripcion.style.display = (descripcion.style.display === 'none' || descripcion.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+</body>
+</html>
